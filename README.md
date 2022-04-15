@@ -14,18 +14,20 @@ fn main() {
     let response = geocodio
         .geocode(
             AddressParams::AddressInput(AddressInput {
-                line_1: "2322 N Marion St".to_string(),
+                line_1: "Black Rock Desert".to_string(),
                 line_2: None,
-                city: "Denver".to_string(),
-                state: "C0".to_string(),
+                city: "Gerlach".to_string(),
+                state: "NV".to_string(),
                 country: "US".to_string(),
-                postal_code: "80205".to_string(),
+                postal_code: "89412".to_string(),
             }),
-            &["cd", "stateleg"],
+            Some(&["acs-economics", "zip4"]),
         )
         .await
         .unwrap();
-    let json = response.json::<serde_json::Value>().await.unwrap();
-    println!("{}", serde_json::to_string_pretty(&json).unwrap());
+   println!(
+        "Burning Man is located at the coordinates: ({}, {})",
+        response.results[0].location.latitude, response.results[0].location.longitude
+    )
 }
 ```
