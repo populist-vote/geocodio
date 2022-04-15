@@ -13,4 +13,10 @@ pub enum Error {
 
     #[error("Failed to fetch {0} from Geocodio API")]
     Api(String),
+
+    #[error("Missing required API key")]
+    MissingAPIKey,
+
+    #[error("Address cannot be empty")]
+    EmptyAddress,
 }

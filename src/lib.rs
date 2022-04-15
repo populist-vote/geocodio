@@ -1,5 +1,9 @@
+mod address;
+mod congressional;
 mod errors;
 mod types;
+pub use address::*;
+pub use congressional::*;
 pub use errors::Error;
 use serde::{Deserialize, Serialize};
 pub use types::*;
@@ -21,12 +25,9 @@ pub struct Input {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct GeocodeResponse {
     input: Input,
-    results: Vec<GeocodeResult>,
-    debug: Debug,
+    results: Vec<Address>,
+    debug: Option<Debug>,
 }
-
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct GeocodeResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Debug {}
@@ -83,8 +84,8 @@ impl GeocodioProxy {
     pub async fn geocode(
         &self,
         address: AddressParams,
-        fields: &[&str],
-    ) -> Result<reqwest::Response, Error> {
+        fields: Option<&[&str]>,
+    ) -> Result<GeocodeResponse, Error> {
         let mut params = match address {
             AddressParams::String(address) => address.to_string(),
             AddressParams::AddressInput(address) => format!(
@@ -92,8 +93,14 @@ impl GeocodioProxy {
                 address.line_1, address.city, address.state, address.country, address.postal_code
             ),
         };
-        params.push_str(format!("&fields={}", fields.join(",")).as_str());
-        self.request("geocode", &params).await
+        if let Some(fields) = fields {
+            params.push_str(format!("&fields={}", fields.join(",")).as_str());
+        }
+        let response = self.request("geocode", &params).await?;
+        let json = &response.json::<serde_json::Value>().await.unwrap();
+        // println!("{}", serde_json::to_string_pretty(&json).unwrap());
+        let result: GeocodeResponse = serde_json::from_value(json.clone()).unwrap();
+        Ok(result)
     }
 
     /// Reverse geocode a tuple of (lat,lng)
@@ -129,15 +136,14 @@ async fn test_geocode() {
                 line_1: "2322 N Marion St".to_string(),
                 line_2: None,
                 city: "Denver".to_string(),
-                state: "C0".to_string(),
+                state: "CO".to_string(),
                 country: "US".to_string(),
                 postal_code: "80205".to_string(),
             }),
-            &["cd", "stateleg"],
+            Some(&["acs-economics", "zip4"]),
         )
         .await
         .unwrap();
-    let json = response.json::<serde_json::Value>().await.unwrap();
-    println!("{}", serde_json::to_string_pretty(&json).unwrap());
-    // assert_eq!(response.status(), reqwest::StatusCode::OK);
+    // println!("{}", serde_json::to_string_pretty(&response).unwrap());
+    assert!(!response.results.is_empty());
 }
