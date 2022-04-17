@@ -10,8 +10,8 @@ pub struct Fields {
     pub congressional_districts: Option<Vec<CongressionalDistrict>>,
     pub state_legislative_districts: Option<StateLegislativeDistricts>,
     pub school_districts: Option<SchoolDistricts>,
-    pub census: CensusResults,
-    pub acs: CencusAcs,
+    pub census: Option<CensusResults>,
+    pub acs: Option<CencusAcs>,
 }
 
 // TO DO

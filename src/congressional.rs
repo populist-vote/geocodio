@@ -2,16 +2,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct StateLegislativeDistricts {
-    house: Vec<StateLegislativeDistrict>,
-    senate: Vec<StateLegislativeDistrict>,
+    pub house: Vec<StateLegislativeDistrict>,
+    pub senate: Vec<StateLegislativeDistrict>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct StateLegislativeDistrict {
-    name: String,
-    district_number: String,
-    is_upcoming_state_legislative_district: bool,
-    proportion: i16,
+    pub name: String,
+    pub district_number: String,
+    pub is_upcoming_state_legislative_district: bool,
+    pub proportion: i16,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]

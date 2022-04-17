@@ -24,9 +24,9 @@ pub struct Input {
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct GeocodeResponse {
-    input: Input,
-    results: Vec<Address>,
-    debug: Option<Debug>,
+    pub input: Input,
+    pub results: Vec<Address>,
+    pub debug: Option<Debug>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -140,10 +140,10 @@ async fn test_geocode() {
                 country: "US".to_string(),
                 postal_code: "80205".to_string(),
             }),
-            Some(&["acs-economics", "zip4"]),
+            Some(&["cd", "stateleg"]),
         )
         .await
         .unwrap();
-    // println!("{}", serde_json::to_string_pretty(&response).unwrap());
+    println!("{}", serde_json::to_string_pretty(&response).unwrap());
     assert!(!response.results.is_empty());
 }
