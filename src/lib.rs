@@ -99,8 +99,12 @@ impl GeocodioProxy {
         let response = self.request("geocode", &params).await?;
         let json = &response.json::<serde_json::Value>().await.unwrap();
         // println!("{}", serde_json::to_string_pretty(&json).unwrap());
-        let result: GeocodeResponse = serde_json::from_value(json.clone()).unwrap();
-        Ok(result)
+        let result = serde_json::from_value(json.clone());
+
+        match result {
+            Ok(geocode_response) => Ok(geocode_response),
+            Err(e) => Err(Error::BadAddress(e)),
+        }
     }
 
     /// Reverse geocode a tuple of (lat,lng)
