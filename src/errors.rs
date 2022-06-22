@@ -9,7 +9,7 @@ pub enum Error {
     #[error(transparent)]
     Request(#[from] reqwest::Error),
 
-    #[error("Failed to deserialize address from geocodio response")]
+    #[error(transparent)]
     BadAddress(#[from] serde_json::Error),
 
     #[error("Failed to fetch {0} from Geocodio API")]
