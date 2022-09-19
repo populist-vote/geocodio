@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{CongressionalDistrict, StateLegislativeDistricts};
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Fields {
     pub timezone: Option<Timezone>,
     pub zip4: Option<Zip4>,
@@ -26,14 +26,14 @@ pub struct Coordinates {
     pub longitude: f64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SchoolDistricts {
     pub unified: Option<SchoolDistrict>,
     pub elementary: Option<SchoolDistrict>,
     pub secondary: Option<SchoolDistrict>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SchoolDistrict {
     pub name: String,
     pub lea_code: String,
@@ -41,7 +41,7 @@ pub struct SchoolDistrict {
     pub grade_high: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Timezone {
     pub name: String,
     pub abbreviation: String,
@@ -50,7 +50,7 @@ pub struct Timezone {
     pub source: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Zip4 {
     pub record_type: RecordType,
     pub carrier_route: CarrierRoute,
@@ -64,19 +64,19 @@ pub struct Zip4 {
     pub exact_match: bool,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RecordType {
     pub code: String,
     pub description: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CarrierRoute {
     pub id: String,
     pub description: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FacilityCode {
     pub code: String,
     pub description: String,

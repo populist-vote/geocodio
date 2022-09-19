@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StateLegislativeDistricts {
     pub house: Vec<StateLegislativeDistrict>,
     pub senate: Vec<StateLegislativeDistrict>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StateLegislativeDistrict {
     pub name: String,
     pub district_number: String,
@@ -14,7 +14,7 @@ pub struct StateLegislativeDistrict {
     pub proportion: i16,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CongressionalDistrict {
     pub name: String,
     pub district_number: i16,
@@ -24,7 +24,7 @@ pub struct CongressionalDistrict {
     pub current_legislators: Option<Vec<Legislator>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Legislator {
     #[serde(rename = "type")]
     pub type_field: String,
@@ -35,7 +35,7 @@ pub struct Legislator {
     pub source: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Bio {
     pub first_name: Option<String>,
     pub last_name: Option<String>,
@@ -44,7 +44,7 @@ pub struct Bio {
     pub party: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contact {
     pub url: Option<String>,
     pub address: Option<String>,
@@ -52,7 +52,7 @@ pub struct Contact {
     pub contact_form: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CongressionalSocial {
     pub rss_url: Option<String>,
     pub twitter: Option<String>,
@@ -61,7 +61,7 @@ pub struct CongressionalSocial {
     pub youtube_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct References {
     pub bioguide_id: Option<String>,
     pub thomas_id: Option<String>,

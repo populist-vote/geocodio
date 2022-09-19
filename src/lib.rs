@@ -16,7 +16,7 @@ pub struct GeocodioProxy {
     api_key: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Input {
     address_components: Components,
     formatted_address: String,
@@ -29,7 +29,7 @@ pub struct GeocodeResponse {
     pub debug: Option<Debug>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Debug {}
 
 #[derive(Serialize, Deserialize)]

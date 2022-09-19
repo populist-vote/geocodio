@@ -1,7 +1,7 @@
 use crate::{Coordinates, Fields};
 use serde::{Deserialize, Serialize};
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Components {
     pub number: Option<String>,
     pub street: Option<String>,
