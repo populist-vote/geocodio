@@ -17,7 +17,7 @@ pub struct StateLegislativeDistrict {
 #[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CongressionalDistrict {
     pub name: String,
-    pub district_number: i16,
+    pub district_number: String,
     pub congress_number: String,
     pub congress_years: String,
     pub proportion: i16,
