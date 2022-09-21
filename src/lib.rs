@@ -137,12 +137,12 @@ async fn test_geocode() {
     let response = geocodio
         .geocode(
             AddressParams::AddressInput(AddressInput {
-                line_1: "3019 11th Ave S".to_string(),
+                line_1: "48965 Co Rd 262".to_string(),
                 line_2: None,
-                city: "Minneapolis".to_string(),
+                city: "Marcell".to_string(),
                 state: "MN".to_string(),
                 country: "US".to_string(),
-                postal_code: "55407".to_string(),
+                postal_code: "56657".to_string(),
             }),
             Some(&["cd", "stateleg"]),
         )
