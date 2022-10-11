@@ -11,7 +11,7 @@ pub struct StateLegislativeDistrict {
     pub name: String,
     pub district_number: String,
     pub is_upcoming_state_legislative_district: bool,
-    pub proportion: i16,
+    pub proportion: serde_json::Value,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -20,7 +20,7 @@ pub struct CongressionalDistrict {
     pub district_number: i16,
     pub congress_number: String,
     pub congress_years: String,
-    pub proportion: i16,
+    pub proportion: serde_json::Value,
     pub current_legislators: Option<Vec<Legislator>>,
 }
 
